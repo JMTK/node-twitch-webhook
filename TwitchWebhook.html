@@ -19,7 +19,7 @@
 
     <h1 class="page-title">Class: TwitchWebhook</h1>
 
-    
+
 
 
 
@@ -27,28 +27,28 @@
 <section>
 
 <header>
-    
+
         <h2><span class="attribs"><span class="type-signature"></span></span>TwitchWebhook<span class="signature">(options)</span><span class="type-signature"></span></h2>
-        
+
             <div class="class-description">Twitch Webhook API</div>
-        
-    
+
+
 </header>
 
 <article>
     <div class="container-overview">
-    
-        
 
-    
+
+
+
     <h2>Constructor</h2>
-    
 
-    
+
+
     <h4 class="name" id="TwitchWebhook"><span class="type-signature"></span>new TwitchWebhook<span class="signature">(options)</span><span class="type-signature"></span></h4>
-    
 
-    
+
+
 
 
 
@@ -65,500 +65,509 @@
 
 
     <h5>Parameters:</h5>
-    
+
 
 <table class="params">
     <thead>
     <tr>
-        
+
         <th>Name</th>
-        
+
 
         <th>Type</th>
 
-        
 
-        
+
+
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>options</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">Object</span>
 
 
-            
+
             </td>
 
-            
 
-            
+
+
 
             <td class="description last">Options
                 <h6>Properties</h6>
-                
+
 
 <table class="params">
     <thead>
     <tr>
-        
+
         <th>Name</th>
-        
+
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
-        
 
-        
+        <th>Attributes</th>
+
+
+
         <th>Default</th>
-        
+
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>client_id</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">string</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
 
-                
 
-                
+
+
+
                 </td>
-            
 
-            
+
+
                 <td class="default">
-                
+
                 </td>
-            
+
 
             <td class="description last">Client ID required for Twitch API calls</td>
         </tr>
 
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>callback</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">string</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
 
-                
 
-                
+
+
+
                 </td>
-            
 
-            
+
+
                 <td class="default">
-                
+
                 </td>
-            
+
 
             <td class="description last">URL where notifications
 will be delivered.</td>
         </tr>
+        <tr>
+          <td class="name"><code>access_token</code></td>
+          <td class="type">
+            <span class="param-type">string</span>
+          </td>
+          <td class="attributes">&lt;optional></td>
+          <td class="default">ignored</td>
+          <td class="description last">Access token used to increase rate limits</td>
+        </tr>
 
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>secret</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">string</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
+
                     &lt;optional><br>
-                
 
-                
 
-                
+
+
+
                 </td>
-            
 
-            
+
+
                 <td class="default">
-                
+
                     false
-                
+
                 </td>
-            
+
 
             <td class="description last">Secret used to sign
 notification payloads.</td>
         </tr>
 
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>lease_seconds</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">number</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
+
                     &lt;optional><br>
-                
 
-                
 
-                
+
+
+
                 </td>
-            
 
-            
+
+
                 <td class="default">
-                
+
                     864000
-                
+
                 </td>
-            
+
 
             <td class="description last">Number of seconds until
 the subscription expires.</td>
         </tr>
 
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>listen</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">boolean</span>
 |
 
 <span class="param-type">Object</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
+
                     &lt;optional><br>
-                
 
-                
 
-                
+
+
+
                 </td>
-            
 
-            
+
+
                 <td class="default">
-                
+
                 </td>
-            
+
 
             <td class="description last">Listen options
                 <h6>Properties</h6>
-                
+
 
 <table class="params">
     <thead>
     <tr>
-        
+
         <th>Name</th>
-        
+
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
-        
 
-        
+        <th>Attributes</th>
+
+
+
         <th>Default</th>
-        
+
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>autoStart</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">string</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
+
                     &lt;optional><br>
-                
 
-                
 
-                
+
+
+
                 </td>
-            
 
-            
+
+
                 <td class="default">
-                
+
                     true
-                
+
                 </td>
-            
+
 
             <td class="description last">Should automaticaly starts listening</td>
         </tr>
 
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>host</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">string</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
+
                     &lt;optional><br>
-                
 
-                
 
-                
+
+
+
                 </td>
-            
 
-            
+
+
                 <td class="default">
-                
+
                     "0.0.0.0"
-                
+
                 </td>
-            
+
 
             <td class="description last">Host to bind to</td>
         </tr>
 
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>port</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">number</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
+
                     &lt;optional><br>
-                
 
-                
 
-                
+
+
+
                 </td>
-            
 
-            
+
+
                 <td class="default">
-                
+
                     8443
-                
+
                 </td>
-            
+
 
             <td class="description last">Port to bind to</td>
         </tr>
 
-    
+
     </tbody>
 </table>
 
             </td>
         </tr>
 
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>https</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">boolean</span>
 |
 
 <span class="param-type">Object</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
+
                     &lt;optional><br>
-                
 
-                
 
-                
+
+
+
                 </td>
-            
 
-            
+
+
                 <td class="default">
-                
+
                     false
-                
+
                 </td>
-            
+
 
             <td class="description last">Should use https connection.
 If yes, these options to be passed to `https.createServer()`.</td>
         </tr>
 
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>baseApiUrl</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">string</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
+
                     &lt;optional><br>
-                
 
-                
 
-                
+
+
+
                 </td>
-            
 
-            
+
+
                 <td class="default">
-                
+
                     "https://api.twitch.tv/helix/"
-                
+
                 </td>
-            
+
 
             <td class="description last">Base Twitch API URL. Needed proxying and testing</td>
         </tr>
 
-    
+
     </tbody>
 </table>
 
             </td>
         </tr>
 
-    
+
     </tbody>
 </table>
 
@@ -569,42 +578,42 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <dl class="details">
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="index.js.html">index.js</a>, <a href="index.js.html#line16">line 16</a>
     </li></ul></dd>
-    
 
-    
 
-    
 
-    
+
+
+
+
 </dl>
 
 
@@ -624,26 +633,26 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 
 
-    
+
     </div>
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
+
+
         <h3 class="subsection-title">Members</h3>
 
-        
-            
+
+
 <h4 class="name" id="errors"><span class="type-signature"></span>errors<span class="type-signature"></span></h4>
 
 
@@ -661,42 +670,42 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <dl class="details">
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="index.js.html">index.js</a>, <a href="index.js.html#line226">line 226</a>
     </li></ul></dd>
-    
 
-    
 
-    
 
-    
+
+
+
+
 </dl>
 
 
@@ -704,22 +713,22 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 
 
-        
-    
 
-    
+
+
+
         <h3 class="subsection-title">Methods</h3>
 
-        
-            
 
-    
 
-    
+
+
+
+
     <h4 class="name" id="close"><span class="type-signature"></span>close<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
 
-    
+
+
 
 
 
@@ -741,42 +750,42 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <dl class="details">
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="index.js.html">index.js</a>, <a href="index.js.html#line119">line 119</a>
     </li></ul></dd>
-    
 
-    
 
-    
 
-    
+
+
+
+
 </dl>
 
 
@@ -793,7 +802,7 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <h5>Returns:</h5>
 
-        
+
 
 
 <dl>
@@ -801,29 +810,29 @@ If yes, these options to be passed to `https.createServer()`.</td>
         Type
     </dt>
     <dd>
-        
+
 <span class="param-type">Promise</span>
 
 
     </dd>
 </dl>
 
-    
 
 
 
 
 
-        
-            
 
-    
 
-    
+
+
+
+
+
     <h4 class="name" id="isListening"><span class="type-signature"></span>isListening<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
 
-    
+
+
 
 
 
@@ -845,42 +854,42 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <dl class="details">
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="index.js.html">index.js</a>, <a href="index.js.html#line134">line 134</a>
     </li></ul></dd>
-    
 
-    
 
-    
 
-    
+
+
+
+
 </dl>
 
 
@@ -897,7 +906,7 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <h5>Returns:</h5>
 
-        
+
 
 
 <dl>
@@ -905,29 +914,29 @@ If yes, these options to be passed to `https.createServer()`.</td>
         Type
     </dt>
     <dd>
-        
+
 <span class="param-type">boolean</span>
 
 
     </dd>
 </dl>
 
-    
 
 
 
 
 
-        
-            
 
-    
 
-    
+
+
+
+
+
     <h4 class="name" id="listen"><span class="type-signature"></span>listen<span class="signature">(&hellip;args<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
 
-    
+
+
 
 
 
@@ -944,64 +953,64 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 
     <h5>Parameters:</h5>
-    
+
 
 <table class="params">
     <thead>
     <tr>
-        
+
         <th>Name</th>
-        
+
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
-        
 
-        
+        <th>Attributes</th>
+
+
+
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>args</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">any</span>
 
 
-            
+
             </td>
 
-            
+
                 <td class="attributes">
-                
+
                     &lt;optional><br>
-                
 
-                
 
-                
+
+
+
                     &lt;repeatable><br>
-                
-                </td>
-            
 
-            
+                </td>
+
+
+
 
             <td class="description last">Arguments</td>
         </tr>
 
-    
+
     </tbody>
 </table>
 
@@ -1012,42 +1021,42 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <dl class="details">
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="index.js.html">index.js</a>, <a href="index.js.html#line96">line 96</a>
     </li></ul></dd>
-    
 
-    
 
-    
 
-    
+
+
+
+
 </dl>
 
 
@@ -1062,7 +1071,7 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <h5>Throws:</h5>
 
-        
+
 
 <dl>
     <dt>
@@ -1077,7 +1086,7 @@ If yes, these options to be passed to `https.createServer()`.</td>
                 Type
             </dt>
             <dd>
-                
+
 <span class="param-type">Promise.&lt;<a href="FatalError.html">FatalError</a>></span>
 
 
@@ -1088,12 +1097,12 @@ If yes, these options to be passed to `https.createServer()`.</td>
 </dl>
 
 
-    
+
 
 
 <h5>Returns:</h5>
 
-        
+
 
 
 <dl>
@@ -1101,29 +1110,29 @@ If yes, these options to be passed to `https.createServer()`.</td>
         Type
     </dt>
     <dd>
-        
+
 <span class="param-type">Promise</span>
 
 
     </dd>
 </dl>
 
-    
 
 
 
 
 
-        
-            
 
-    
 
-    
+
+
+
+
+
     <h4 class="name" id="subscribe"><span class="type-signature"></span>subscribe<span class="signature">(topic, options)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
 
-    
+
+
 
 
 
@@ -1140,73 +1149,73 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 
     <h5>Parameters:</h5>
-    
+
 
 <table class="params">
     <thead>
     <tr>
-        
+
         <th>Name</th>
-        
+
 
         <th>Type</th>
 
-        
 
-        
+
+
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>topic</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">string</span>
 
 
-            
+
             </td>
 
-            
 
-            
+
+
 
             <td class="description last">Topic name</td>
         </tr>
 
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>options</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">Object</span>
 
 
-            
+
             </td>
 
-            
 
-            
+
+
 
             <td class="description last">Topic options</td>
         </tr>
 
-    
+
     </tbody>
 </table>
 
@@ -1217,42 +1226,42 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <dl class="details">
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="index.js.html">index.js</a>, <a href="index.js.html#line199">line 199</a>
     </li></ul></dd>
-    
 
-    
 
-    
 
-    
+
+
+
+
 </dl>
 
 
@@ -1267,7 +1276,7 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <h5>Throws:</h5>
 
-        
+
 
 <dl>
     <dt>
@@ -1282,7 +1291,7 @@ If yes, these options to be passed to `https.createServer()`.</td>
                 Type
             </dt>
             <dd>
-                
+
 <span class="param-type"><a href="RequestDenied.html">RequestDenied</a></span>
 
 
@@ -1293,12 +1302,12 @@ If yes, these options to be passed to `https.createServer()`.</td>
 </dl>
 
 
-    
+
 
 
 <h5>Returns:</h5>
 
-        
+
 
 
 <dl>
@@ -1306,29 +1315,29 @@ If yes, these options to be passed to `https.createServer()`.</td>
         Type
     </dt>
     <dd>
-        
+
 <span class="param-type">Promise</span>
 
 
     </dd>
 </dl>
 
-    
 
 
 
 
 
-        
-            
 
-    
 
-    
+
+
+
+
+
     <h4 class="name" id="unsubscribe"><span class="type-signature"></span>unsubscribe<span class="signature">(topic)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-    
 
-    
+
+
 
 
 
@@ -1346,50 +1355,50 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 
     <h5>Parameters:</h5>
-    
+
 
 <table class="params">
     <thead>
     <tr>
-        
+
         <th>Name</th>
-        
+
 
         <th>Type</th>
 
-        
 
-        
+
+
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
-    
+
 
         <tr>
-            
+
                 <td class="name"><code>topic</code></td>
-            
+
 
             <td class="type">
-            
-                
+
+
 <span class="param-type">string</span>
 
 
-            
+
             </td>
 
-            
 
-            
+
+
 
             <td class="description last">Topic name</td>
         </tr>
 
-    
+
     </tbody>
 </table>
 
@@ -1400,42 +1409,42 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <dl class="details">
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="index.js.html">index.js</a>, <a href="index.js.html#line211">line 211</a>
     </li></ul></dd>
-    
 
-    
 
-    
 
-    
+
+
+
+
 </dl>
 
 
@@ -1450,7 +1459,7 @@ If yes, these options to be passed to `https.createServer()`.</td>
 
 <h5>Throws:</h5>
 
-        
+
 
 <dl>
     <dt>
@@ -1465,7 +1474,7 @@ If yes, these options to be passed to `https.createServer()`.</td>
                 Type
             </dt>
             <dd>
-                
+
 <span class="param-type"><a href="RequestDenied.html">RequestDenied</a></span>
 
 
@@ -1476,12 +1485,12 @@ If yes, these options to be passed to `https.createServer()`.</td>
 </dl>
 
 
-    
+
 
 
 <h5>Returns:</h5>
 
-        
+
 
 
 <dl>
@@ -1489,25 +1498,25 @@ If yes, these options to be passed to `https.createServer()`.</td>
         Type
     </dt>
     <dd>
-        
+
 <span class="param-type">Promise</span>
 
 
     </dd>
 </dl>
 
-    
 
 
 
 
 
-        
-    
 
-    
 
-    
+
+
+
+
+
 </article>
 
 </section>
