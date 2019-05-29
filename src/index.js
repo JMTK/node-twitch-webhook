@@ -19,8 +19,6 @@ class TwitchWebhook extends EventEmitter {
    *
    * @param {Object} options - Options
    * @param {string} options.client_id - Client ID required for Twitch API calls
-   * @param {string} options.callback - URL where notifications
-   * will be delivered.
    * @param {string} [options.secret=false] - Secret used to sign
    * notification payloads.
    * @param {string} [options.access_token] - Access token used to increase rate limit
@@ -39,16 +37,9 @@ class TwitchWebhook extends EventEmitter {
       throw new errors.FatalError('Twitch Client ID not provided!')
     }
 
-    if (!options.callback) {
-      throw new errors.FatalError('Callback URL not provided!')
-    }
-
     super()
 
     this._options = options
-    if (options.callback.substr(-1) !== '/') {
-      this._options.callback += '/'
-    };
 
     if (this._options.lease_seconds === undefined) {
       this._options.lease_seconds = 864000
@@ -144,10 +135,17 @@ class TwitchWebhook extends EventEmitter {
    * unsubscribe from.
    * @param {string} topic - Topic name
    * @param {Object} options - Topic options
+   * @param {string} callback - Callback url
    * @throws {Promise<RequestDenied>} If the hub finds any errors in the request
    * @return {Promise}
    */
-  _request (mode, topic, options) {
+  _request (mode, topic, callback, options) {
+    if (!callback) {
+      throw new errors.FatalError('Callback URL not provided!')
+    }
+    if (callback.substr(-1) !== '/') {
+      callback += '/'
+    }
     if (!isAbsoluteUrl(topic)) {
       topic = this._apiUrl + topic
     }
@@ -167,7 +165,7 @@ class TwitchWebhook extends EventEmitter {
       }
     }
     requestOptions.qs = {
-      'hub.callback': this._options.callback,
+      'hub.callback': callback,
       'hub.mode': mode,
       'hub.topic': topic,
       'hub.lease_seconds': this._options.lease_seconds
@@ -203,8 +201,8 @@ class TwitchWebhook extends EventEmitter {
    * @throws {RequestDenied} If hub finds any errors in the request
    * @return {Promise}
    */
-  subscribe (topic, options = {}) {
-    return this._request('subscribe', topic, options)
+  subscribe (topic, callback, options = {}) {
+    return this._request('subscribe', topic, callback, options)
   }
 
   /**
@@ -215,14 +213,14 @@ class TwitchWebhook extends EventEmitter {
    * @throws {RequestDenied} If hub finds any errors in the request
    * @return {Promise}
    */
-  unsubscribe (topic, options = {}) {
+  unsubscribe (topic, callback, options = {}) {
     if (topic !== '*') {
-      return this._request('unsubscribe', topic, options)
+      return this._request('unsubscribe', topic, callback, options)
     }
 
     let poll = []
     for (let topic of Object.keys(this._subscriptions)) {
-      poll.push(() => this._request('unsubscribe', topic))
+      poll.push(() => this._request('unsubscribe', topic, null, {}))
     }
     return Promise.all(poll)
   }
