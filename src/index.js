@@ -19,9 +19,10 @@ class TwitchWebhook extends EventEmitter {
    *
    * @param {Object} options - Options
    * @param {string} options.client_id - Client ID required for Twitch API calls
+   * @param {string} options.callback - URL where notifications
+   * will be delivered.
    * @param {string} [options.secret=false] - Secret used to sign
    * notification payloads.
-   * @param {string} [options.access_token] - Access token used to increase rate limit
    * @param {number} [options.lease_seconds=864000] - Number of seconds until
    * the subscription expires.
    * @param {boolean|Object} [options.listen] - Listen options
@@ -37,9 +38,20 @@ class TwitchWebhook extends EventEmitter {
       throw new errors.FatalError('Twitch Client ID not provided!')
     }
 
+    if (!options.callback) {
+      throw new errors.FatalError('Callback URL not provided!')
+    }
+    
+    if (!options.access_token) {
+      throw new errors.FatalError('Access Token not provided!')
+    }
+
     super()
 
     this._options = options
+    if (options.callback.substr(-1) !== '/') {
+      this._options.callback += '/'
+    };
 
     if (this._options.lease_seconds === undefined) {
       this._options.lease_seconds = 864000
@@ -135,40 +147,30 @@ class TwitchWebhook extends EventEmitter {
    * unsubscribe from.
    * @param {string} topic - Topic name
    * @param {Object} options - Topic options
-   * @param {string} callback - Callback url
    * @throws {Promise<RequestDenied>} If the hub finds any errors in the request
    * @return {Promise}
    */
-  _request (mode, topic, callback, options) {
-    if (!callback) {
-      throw new errors.FatalError('Callback URL not provided!')
-    }
-    if (callback.substr(-1) !== '/') {
-      callback += '/'
-    }
+  _request (mode, topic, options) {
     if (!isAbsoluteUrl(topic)) {
       topic = this._apiUrl + topic
     }
     if (Object.keys(options).length) {
-      topic += '?' + qs.stringify(options)
+      topic += '?' + qs.stringify(options);
     }
 
-    let requestOptions = {}
-    requestOptions.url = this._hubUrl
-    if (this._options.access_token !== undefined) {
-      requestOptions.headers = {
-        'Authorization': `Bearer ${this._options.access_token}`
-      }
-    } else {
-      throw "'access_token' missing from options!"
-    }
+    let requestOptions = {};
+    requestOptions.url = this._hubUrl;
+    requestOptions.headers = {
+      'Client-ID': this._options.client_id,
+      'Authorization': 'Bearer ' + this._options.access_token
+    };
     requestOptions.qs = {
-      'hub.callback': callback,
+      'hub.callback': this._options.callback,
       'hub.mode': mode,
       'hub.topic': topic,
       'hub.lease_seconds': this._options.lease_seconds
-    }
-    requestOptions.resolveWithFullResponse = true
+    };
+    requestOptions.resolveWithFullResponse = true;
     if (this._options.secret) {
       const secret = crypto
         .createHmac('sha256', this._options.secret)
@@ -199,8 +201,8 @@ class TwitchWebhook extends EventEmitter {
    * @throws {RequestDenied} If hub finds any errors in the request
    * @return {Promise}
    */
-  subscribe (topic, callback, options = {}) {
-    return this._request('subscribe', topic, callback, options)
+  subscribe (topic, options = {}) {
+    return this._request('subscribe', topic, options)
   }
 
   /**
@@ -211,14 +213,14 @@ class TwitchWebhook extends EventEmitter {
    * @throws {RequestDenied} If hub finds any errors in the request
    * @return {Promise}
    */
-  unsubscribe (topic, callback, options = {}) {
+  unsubscribe (topic, options = {}) {
     if (topic !== '*') {
-      return this._request('unsubscribe', topic, callback, options)
+      return this._request('unsubscribe', topic, options)
     }
 
     let poll = []
     for (let topic of Object.keys(this._subscriptions)) {
-      poll.push(() => this._request('unsubscribe', topic, null, {}))
+      poll.push(() => this._request('unsubscribe', topic))
     }
     return Promise.all(poll)
   }
