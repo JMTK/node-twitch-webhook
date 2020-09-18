@@ -160,9 +160,7 @@ class TwitchWebhook extends EventEmitter {
         'Authorization': `Bearer ${this._options.access_token}`
       }
     } else {
-      requestOptions.headers = {
-        'Client-ID': this._options.client_id
-      }
+      throw "'access_token' missing from options!"
     }
     requestOptions.qs = {
       'hub.callback': callback,
