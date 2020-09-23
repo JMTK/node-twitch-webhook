@@ -150,19 +150,31 @@ class TwitchWebhook extends EventEmitter {
    * @throws {Promise<RequestDenied>} If the hub finds any errors in the request
    * @return {Promise}
    */
-  _request (mode, topic, options) {
+  async _request (mode, topic, options) {
     if (!isAbsoluteUrl(topic)) {
       topic = this._apiUrl + topic
     }
     if (Object.keys(options).length) {
       topic += '?' + qs.stringify(options);
     }
-
+    var t;
+    if (typeof this._options.access_token === 'function') {
+         let cb = this._options.access_token();
+         if (cb instanceof Promise) {
+            t = await cb;
+         }
+         else {
+            t = cb;
+         }
+    }
+    else {
+        t = this._options.access_token;
+    }
     let requestOptions = {};
     requestOptions.url = this._hubUrl;
     requestOptions.headers = {
       'Client-ID': this._options.client_id,
-      'Authorization': 'Bearer ' + this._options.access_token
+      'Authorization': 'Bearer ' + t
     };
     requestOptions.qs = {
       'hub.callback': this._options.callback,
@@ -180,17 +192,17 @@ class TwitchWebhook extends EventEmitter {
       requestOptions.qs['hub.secret'] = secret
     }
 
-    return request
-      .post(requestOptions)
-      .catch(err => {
-        throw new errors.RequestDenied(err)
-      })
-      .then(response => {
+    try {
+      let response = await request
+                    .post(requestOptions);
         this._subscriptions[topic] = {}
         if (this._options.secret) {
           this._subscriptions[topic].secret = requestOptions.qs['hub.secret']
         }
-      })
+      }
+    catch(err) {
+      throw new errors.RequestDenied(err);
+    }
   }
 
   /**
