@@ -160,7 +160,7 @@ class TwitchWebhook extends EventEmitter {
     var t;
     if (typeof this._options.access_token === 'function') {
          let cb = this._options.access_token();
-         if (cb instanceof Promise) {
+         if (Object.prototype.toString.call(cb) === "[object Promise]") {
             t = await cb;
          }
          else {
