@@ -6,7 +6,6 @@ const url = require('url')
 const http = require('http')
 const https = require('https')
 const qs = require('querystring')
-const Promise = require('bluebird')
 const isAbsoluteUrl = require('is-absolute-url')
 const parseLinkHeader = require('parse-link-header')
 
